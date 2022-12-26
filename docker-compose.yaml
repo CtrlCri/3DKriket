@@ -1,0 +1,32 @@
+# Version of docker-compose to use
+version: '3.8'
+
+services:
+  app: # This is the service for the Django application
+    build:  . # Sets the directory containing a Dockerfile
+
+    command:
+      - /bin/sh
+      - -c
+      - |
+        python /app/manage.py migrate
+        python /app/manage.py runserver 0.0.0.0:8000
+    
+    volumes:
+    # Copy changes made to the project to image working directory as changes are made
+      - .:/app
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+
+  db: 
+    image: postgres:15.1-alpine # pulling Postgres image from Docker hub
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+
+volumes:
+  postgres_data:
