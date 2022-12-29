@@ -2,3 +2,4 @@ venv/
 .env
 core/__pycache__/
 users/__pycache__/
+printmodels/__pycache__/
