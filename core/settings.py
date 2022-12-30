@@ -75,7 +75,7 @@ DATABASES = {
         'NAME': os.getenv('DATABASE_NAME'), 
         'USER': os.getenv('DATABASE_USER'),
         'PASSWORD': os.getenv('DATABASE_PASS'),
-        'HOST': "db",  # set in docker-compose.yml
+        'HOST': "localhost", #"db",  # set in docker-compose.yml
         "PORT": 5432,  # default postgres port
     }
 }

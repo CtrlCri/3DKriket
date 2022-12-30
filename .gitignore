@@ -1,5 +1,6 @@
 venv/
 .env
+.env-remote
 core/__pycache__/
 users/__pycache__/
 printmodels/__pycache__/
