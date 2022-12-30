@@ -1,6 +1,16 @@
 from django.db import models
 from users.models import User
 
+class Category(models.Model):
+    """
+    A model representing a category that a 3D printable model can belong to.
+
+    Fields:
+        name (models.CharField): The name of the category.
+        print_models (models.ManyToManyField): The 3D printable models that belong to this category.
+    """
+    name = models.CharField(max_length=50)
+
 class PrintModel(models.Model):
     """
     A model representing a 3D printable model available for purchase on the service.
@@ -16,6 +26,7 @@ class PrintModel(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     download_file = models.FileField(upload_to='3D_models')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='category')
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='print_models')
 
 
@@ -62,18 +73,6 @@ class PrintModelTag(models.Model):
     """
     print_model = models.ForeignKey(PrintModel, on_delete=models.CASCADE, related_name='tags')
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE, related_name='print_models')
-
-class Category(models.Model):
-    """
-    A model representing a category that a 3D printable model can belong to.
-
-    Fields:
-        name (models.CharField): The name of the category.
-        print_models (models.ManyToManyField): The 3D printable models that belong to this category.
-    """
-    name = models.CharField(max_length=50)
-    print_models = models.ManyToManyField(PrintModel, related_name='categories')
-
 
 class Order(models.Model):
     """
