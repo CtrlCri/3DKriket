@@ -17,5 +17,3 @@ class RetreiveUpdateUserView(generics.RetrieveUpdateAPIView):
     
 class CreateTokenView(ObtainAuthToken):
     serializer_class = AuthTokenSerializer
-    
-

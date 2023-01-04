@@ -2,24 +2,16 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model, authenticate
 
 class UserSerializer(serializers.ModelSerializer):
-    """
-    Serializer for creating and updating User instances.
-    """
+    
     class Meta:
         model = get_user_model()
         fields = ['email', 'password']
         extra_kwargs = {'password': {'write_only': True}}
         
     def create(self, validated_data):
-        """
-        Create and return a new User instance, given the validated data.
-        """
         return get_user_model().objects.create_user(**validated_data)
     
     def update(self, instance, validated_data):
-        """
-        Update and return an existing User instance, given the validated data.
-        """
         password =validated_data.pop('password', None)
         user = super().update(instance, validated_data)
         
@@ -30,19 +22,13 @@ class UserSerializer(serializers.ModelSerializer):
         return user
     
 class AuthTokenSerializer(serializers.Serializer):
-    """
-    Serializer for authenticating a user.
-    """
     email = serializers.EmailField()
     password = serializers.CharField(style={'input_type': 'password'})
     
     def validate(self, data):
-        """
-        Validate and authenticate the user.
-        """
         email = data.get('email')
         password = data.get('password')
-        user= authenticate(
+        user = authenticate(
             request=self.context.get('request'),
             username=email,
             password=password

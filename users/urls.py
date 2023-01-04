@@ -1,10 +1,11 @@
 from django.urls import path
 
-from . import views
+from users import views
 
 
 urlpatterns = [
-    path('create/', views.CreateUserView.as_view()),
-    path('token/', views.CreateTokenView.as_view()),
+    path('create_user/', views.CreateUserView.as_view()),
+    path('auth_token/', views.CreateTokenView.as_view()),
     path('user/', views.RetreiveUpdateUserView.as_view()),
 ]
+
