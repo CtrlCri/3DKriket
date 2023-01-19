@@ -3,4 +3,5 @@ venv/
 .env-remote
 core/__pycache__/
 users/__pycache__/
+base/__pycache__/
 printmodels/__pycache__/
