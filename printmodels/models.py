@@ -1,7 +1,8 @@
 from django.db import models
+from base.models import BaseModel
 from users.models import User
 
-class Category(models.Model):
+class Category(BaseModel):
     """
     A model representing a category that a 3D printable model can belong to.
 
@@ -11,7 +12,7 @@ class Category(models.Model):
     """
     name = models.CharField(max_length=50)
 
-class PrintModel(models.Model):
+class PrintModel(BaseModel):
     """
     A model representing a 3D printable model available for purchase on the service.
 
@@ -30,7 +31,7 @@ class PrintModel(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='print_models')
 
 
-class SampleImage(models.Model):
+class SampleImage(BaseModel):
     """
     A model representing an image of a 3D printable model.
 
@@ -42,7 +43,7 @@ class SampleImage(models.Model):
     image = models.ImageField(upload_to='sample_images')
 
 
-class DownloadableFile(models.Model):
+class DownloadableFile(BaseModel):
     """
     A model representing a file that can be downloaded for a 3D printable model.
 
@@ -54,7 +55,7 @@ class DownloadableFile(models.Model):
     file = models.FileField(upload_to='downloadable_files')
 
 
-class Tag(models.Model):
+class Tag(BaseModel):
     """
     A model representing a tag that can be associated with a 3D printable model.
 
@@ -64,7 +65,7 @@ class Tag(models.Model):
     name = models.CharField(max_length=50)
 
 
-class PrintModelTag(models.Model):
+class PrintModelTag(BaseModel):
     """
     A model representing the relationship between a 3D print
 
@@ -74,7 +75,7 @@ class PrintModelTag(models.Model):
     print_model = models.ForeignKey(PrintModel, on_delete=models.CASCADE, related_name='tags')
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE, related_name='print_models')
 
-class Order(models.Model):
+class Order(BaseModel):
     """
     A model representing an order made by a user on the 3D printing service.
 
@@ -90,7 +91,7 @@ class Order(models.Model):
     order_date = models.DateTimeField(auto_now_add=True)
 
 
-class Review(models.Model):
+class Review(BaseModel):
     """
     A model representing a review made by a user for a 3D printable model.
 
@@ -106,7 +107,7 @@ class Review(models.Model):
     text = models.TextField()
 
 
-class Payment(models.Model):
+class Payment(BaseModel):
     """
     A model representing a payment made for an order on the 3D printing service.
 
