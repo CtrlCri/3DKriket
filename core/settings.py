@@ -27,7 +27,8 @@ BASE_APPS = [
 
 LOCAL_APPS = [
     'users',
-    'printmodels'
+    'base',
+    'products'
 ]
 
 THIRD_APPS = [

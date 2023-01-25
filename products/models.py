@@ -1,5 +1,6 @@
 from django.db import models
 from base.models import BaseModel
+from users.models import User
 
 class Category(BaseModel):
     """
@@ -23,24 +24,11 @@ class Product(BaseModel):
     def __str__(self):
         return self.name
 
-
-class Customer(BaseModel):
-    """
-    Modelo de cliente
-    """
-    name = models.CharField(max_length=255)
-    address = models.CharField(max_length=255)
-    email = models.EmailField()
-    phone = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.name
-
 class Purchase(BaseModel):
     """
     Modelo de compra
     """
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
