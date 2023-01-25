@@ -7,7 +7,10 @@ class Category(BaseModel):
     Modelo de categoria
     """
     name = models.CharField(max_length=255)
-
+    
+    class Meta:
+        verbose_name = "Categoría"
+    
     def __str__(self):
         return self.name
 
@@ -20,7 +23,10 @@ class Product(BaseModel):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.IntegerField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-
+    
+    class Meta:
+        verbose_name = "Artículo"
+    
     def __str__(self):
         return self.name
 
@@ -32,7 +38,10 @@ class Purchase(BaseModel):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
-
+    
+    class Meta:
+        verbose_name = "Compra"
+    
     def __str__(self):
         return f"Purchase by {self.customer.name} for product {self.product.name}"
 
@@ -44,7 +53,10 @@ class Complaint(BaseModel):
     complaint_category = models.CharField(max_length=255)
     description = models.TextField()
     resolution = models.TextField()
-
+    
+    class Meta:
+        verbose_name = "Reclamo"
+    
     def __str__(self):
         return f"Complaint by {self.purchase.customer.name} for purchase {self.purchase.id}"
 
