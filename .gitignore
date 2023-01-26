@@ -5,3 +5,7 @@ core/__pycache__/
 users/__pycache__/
 base/__pycache__/
 products/__pycache__/
+data/
+xyzdatabase/venv/
+
+
