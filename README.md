@@ -1,5 +1,5 @@
 # 3DKriket
-
+Ecommerce, online sale of 3D printed products.
 ## License:
 
 > This project is licensed under the MIT License
